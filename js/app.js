@@ -66,3 +66,42 @@ function escapeHtml(str) {
     div.textContent = str;
     return div.innerHTML;
 }
+
+$(document).ready(function () {
+
+    // ADD SUBJECT
+    $("#addSubject").click(function () {
+
+        // Get the values from the input fields
+        let subjectCode = $("#subjectCode").val().trim();
+        let subjectName = $("#subjectName").val().trim();
+        let units = $("#units").val().trim();
+
+        // Check if all fields have values
+        if (subjectCode === "" || subjectName === "" || units === "") {
+            alert("Please fill in all fields.");
+            return;
+        }
+
+        // Create a new row
+        let row = `
+            <tr>
+                <td>${subjectCode}</td>
+                <td>${subjectName}</td>
+                <td>${units}</td>
+            </tr>
+        `;
+
+        // Add the row to the subject table
+        $("#table-content").append(row);
+
+        // Clear the input fields after adding
+        $("#subjectCode").val("");
+        $("#subjectName").val("");
+        $("#units").val("");
+
+        // Return cursor to Subject Code
+        $("#subjectCode").focus();
+    });
+
+});
